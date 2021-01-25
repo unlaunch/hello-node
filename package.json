@@ -1,0 +1,15 @@
+{
+  "name": "hello-node",
+  "version": "1.0.0",
+  "description": "Example project describing how to use Unlaunch Node.js SDK",
+  "main": "src/hello.js",
+  "type": "module",
+  "scripts": {
+    "start": "node --no-warnings src/hello.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "unlaunch-node-sdk": "^0.0.2"
+  }
+}
