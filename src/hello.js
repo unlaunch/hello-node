@@ -1,10 +1,10 @@
 import {UnlaunchFactory} from 'unlaunch-node-sdk';
 
 // EDIT ME! Set SDK_KEY to your Unlaunch SDK key.
-const SDK_KEY = 'prod-sdk-9b6cf021-a1b5-4b30-9b39-533bb0c9f4b3';
+const SDK_KEY = 'sdkKey';
 
 // EDIT ME!  Set FEATURE_FLAG_KEY to your feature flag key to evaluate
-const FEATURE_FLAG_KEY = "flag-1";
+const FEATURE_FLAG_KEY = "flagKey";
 
 if (!SDK_KEY || SDK_KEY && SDK_KEY.length <= 0) {
     console.error("[DEMO] You must edit hello.js to set SDK_KEY to Unlaunch SDK key. \n" +
@@ -25,13 +25,13 @@ var factory = UnlaunchFactory({
     },
     intervals: {
         // fetch feature updates each 30 sec
-        pollingInterval: 330,
+        pollingInterval: 30,
         // publish metrics each 120 sec
         metricsFlushInterval: 120,
         // flush events every 60 seconds after the first flush
-        eventsFlushInterval: 30,
+        eventsFlushInterval: 60,
         // http connection timeout 
-        httpConnectionTimeout: 20
+        httpConnectionTimeout: 10
     },
     mode: {
         offlineMode: false
