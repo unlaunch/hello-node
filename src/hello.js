@@ -63,10 +63,10 @@ client.once('READY', () => {
      * Evaluate flag using attribute
      */
     const variationWhenAttribute = client.variation(
-        'flag-1',
+        FEATURE_FLAG_KEY,
         'user-id-123',
         {
-            "age": "12",
+            "age": 12,
             "country": "US"
         });
     console.info(`[DEMO] Variation return when attributes are passed: ${variationWhenAttribute}`)
