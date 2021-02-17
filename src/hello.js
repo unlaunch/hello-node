@@ -1,10 +1,10 @@
 import {UnlaunchFactory} from 'unlaunch-node-sdk';
 
 // EDIT ME! Set SDK_KEY to your Unlaunch SDK key.
-const SDK_KEY = 'prod-server-304f6c63-e170-4a84-b310-a72761544941';
+const SDK_KEY = 'INSERT_YOUR_SDK_KEY';
 
 // EDIT ME!  Set FEATURE_FLAG_KEY to your feature flag key to evaluate
-const FEATURE_FLAG_KEY = "hi-tuan-2";
+const FEATURE_FLAG_KEY = "INSERT_YOUR_FLAG_KEY";
 
 if (!SDK_KEY || SDK_KEY && SDK_KEY.length <= 0) {
     console.error("[DEMO] You must edit hello.js to set SDK_KEY to Unlaunch SDK key. \n" +
@@ -21,7 +21,6 @@ if (FEATURE_FLAG_KEY == null || FEATURE_FLAG_KEY.length <= 0) {
 // Create Unlaunch client object by using SDK_KEY and finetune configuration if needed by passing it as argument          
 var factory = UnlaunchFactory({
     core: {
-        host: 'http://localhost:5000',
         sdkKey: SDK_KEY
     },
     intervals: {
@@ -80,5 +79,5 @@ client.once('READY', () => {
     console.info(`[DEMO] Variation returned when attributes are passed: ${variationWhenAttribute}`)
 
     // shutdown the client to flush any events or metrics 
-    //client.shutdown();
+    client.shutdown();
 })
