@@ -10,6 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "unlaunch-node-sdk": "^0.0.2"
+    "unlaunch-node-sdk": "^0.0.5"
   }
 }
