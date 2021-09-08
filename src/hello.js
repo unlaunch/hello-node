@@ -1,10 +1,10 @@
-import {UnlaunchFactory} from 'unlaunch-node-sdk';
+const UnlaunchFactory = require('unlaunch-node-sdk');
 
 // EDIT ME! Set SDK_KEY to your Unlaunch SDK key.
-const SDK_KEY = 'prod-sdk-9b6cf021-a1b5-4b30-9b39-533bb0c9f4b3';
+const SDK_KEY = 'prod-sdk-355bf209-d8ab-4f06-8e20-a3bb95b607ca';
 
 // EDIT ME!  Set FEATURE_FLAG_KEY to your feature flag key to evaluate
-const FEATURE_FLAG_KEY = "flag-1";
+const FEATURE_FLAG_KEY = "flag-no-rules";
 
 if (!SDK_KEY || SDK_KEY && SDK_KEY.length <= 0) {
     console.error("[DEMO] You must edit hello.js to set SDK_KEY to Unlaunch SDK key. \n" +
@@ -57,7 +57,7 @@ client.once('READY', () => {
      **/
 
     const feature = client.feature(FEATURE_FLAG_KEY, "user-id-123");
-    console.info(`[DEMO] Feature returned variation: ${feature.variation}. Evaluation reason: ${feature.evaluationReason}`);
+    console.info(`[DEMO] Feature returned variation: ${feature.variationKey}. Evaluation reason: ${feature.evaluationReason}`);
 
     /**
      * Evaluate flag using attribute
@@ -66,8 +66,7 @@ client.once('READY', () => {
         'flag-1',
         'user-id-123',
         {
-            "age": "12",
-            "country": "US"
+           "name":"maha"
         });
     console.info(`[DEMO] Variation return when attributes are passed: ${variationWhenAttribute}`)
 
