@@ -1,10 +1,10 @@
 const UnlaunchFactory = require('unlaunch-node-sdk');
 
 // EDIT ME! Set SDK_KEY to your Unlaunch SDK key.
-const SDK_KEY = 'prod-sdk-355bf209-d8ab-4f06-8e20-a3bb95b607ca';
+const SDK_KEY = 'INSERT_YOUR_SDK_KEY';
 
 // EDIT ME!  Set FEATURE_FLAG_KEY to your feature flag key to evaluate
-const FEATURE_FLAG_KEY = "flag-no-rules";
+const FEATURE_FLAG_KEY = "INSERT_YOUR_FLAG_KEY";
 
 if (!SDK_KEY || SDK_KEY && SDK_KEY.length <= 0) {
     console.error("[DEMO] You must edit hello.js to set SDK_KEY to Unlaunch SDK key. \n" +
@@ -25,13 +25,13 @@ var factory = UnlaunchFactory({
     },
     intervals: {
         // fetch feature updates each 30 sec
-        pollingInterval: 330,
+        pollingInterval: 30,
         // publish metrics each 120 sec
         metricsFlushInterval: 120,
         // flush events every 60 seconds after the first flush
-        eventsFlushInterval: 30,
+        eventsFlushInterval: 60,
         // http connection timeout 
-        httpConnectionTimeout: 20
+        httpConnectionTimeout: 10
     },
     mode: {
         offlineMode: false
@@ -40,7 +40,6 @@ var factory = UnlaunchFactory({
 const client = factory.client();
 
 // Wait for the client to be ready
-
 client.once('READY', () => {
 
     // Get variation
@@ -60,17 +59,25 @@ client.once('READY', () => {
     console.info(`[DEMO] Feature returned variation: ${feature.variationKey}. Evaluation reason: ${feature.evaluationReason}`);
 
     /**
-     * Evaluate flag using attribute
+     * Evaluate flag using attribute(s)
      */
     const variationWhenAttribute = client.variation(
-        'flag-1',
-        'user-id-123',
+        FEATURE_FLAG_KEY,
+        "user-id-123",
         {
-           "name":"maha"
+            "number": 123,
+            "boolean": true,
+            "date1": new Date(Date.UTC(2021, 1, 2, 0, 0, 0)),       // type Date
+            "datetime1": new Date(Date.UTC(2021, 1, 2, 3, 4, 5)),   // type Date 
+            "date2": 1612224000000,                 // millisecondsSinceEpoch                   
+            "datetime2": 1612235045000,             // millisecondsSinceEpoch
+            "set1": ["value1", "value2"],           // type Array
+            "set2": new Set(["value1", "value2"]),  // type Set
+            "string": "hello-node"
         });
-    console.info(`[DEMO] Variation return when attributes are passed: ${variationWhenAttribute}`)
+
+    console.info(`[DEMO] Variation returned when attributes are passed: ${variationWhenAttribute}`)
 
     // shutdown the client to flush any events or metrics 
     client.shutdown();
 })
-
